@@ -32,7 +32,7 @@ public class Channels implements Observer{
 		channelsList.put(channelNumber, new Channel(dfb));
 		portReader.addChannelQueue(channelNumber, dfb);
 		dfb.addObserver(this);
-		channelsList.get(channelNumber).populateDFB();
+		//channelsList.get(channelNumber).populateDFB();
 	}
 	
 	
