@@ -58,14 +58,14 @@ public class PortReader {
 					      System.out.println(len);
 					      int numRead = sp.readBytes(newData, len);
 					      int[]values = new int[len];
-					      if(len>6){
+					      if(len>=6){
 				
 					    	 pool.submit(new Runnable(){
 
 								@Override
 									
 							    	  public void run(){
-							       	      for(int i = 0;i<len/6;i++){
+							       	      for(int i = 0;i<=len/6;i++){
 										      ByteBuffer buf = ByteBuffer.wrap(newData);
 										      int timestamp = buf.getInt();
 										      
@@ -78,8 +78,7 @@ public class PortReader {
 										      bb.put(firstByte);
 										      bb.put(secByte);					      
 										      int sampleValue = bb.getShort(0);
-										      sampleQueue.add(null);
-										      
+							
 										      if(portQueuesList.containsKey(adcNumber)){
 										    	  portQueuesList.get(adcNumber).addBufferData(new int[]{timestamp,sampleValue});
 										      }
