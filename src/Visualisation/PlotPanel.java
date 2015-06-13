@@ -3,6 +3,7 @@ package Visualisation;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
@@ -11,10 +12,11 @@ public class PlotPanel extends JPanel{
 	public PlotPanel(){
 
 	}
-	int [] points = {0};
+	Integer [][] points = {{0}};
 	
-	public void paintSamples(int [] sampl){
+	public void paintSamples(Integer[][] sampl){
 		this.points = sampl;
+		repaint();
 		
 	}
 	public void paintComponent(Graphics g){
@@ -28,9 +30,9 @@ public class PlotPanel extends JPanel{
 		//rysuje wykres
 		g.setColor(Color.black);
 		g.drawRect(0, 0	, this.getSize().width, this.getSize().height);
-
-		for(int i = 0;i<points.length-1;i++){
-		g.drawLine(0+i, 1, 0+i+1,1);
+		
+		for(int i = 0;i<points[0].length-1;i++){
+		g.drawLine(points[0][i], points[1][i]+100, points[0][i+1],points[1][i+1]+100);
 		}
 	}
 

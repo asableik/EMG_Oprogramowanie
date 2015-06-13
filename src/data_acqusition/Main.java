@@ -12,7 +12,8 @@ import javax.swing.SwingUtilities;
 import Visualisation.MainFrame;
 
 public class Main {
-	
+	static MainFrame mainFrame;
+	static Channels channels;
 public void writeToFile(SortedSet<Integer[]> subset){
 	try{
 			@SuppressWarnings("resource")
@@ -27,15 +28,29 @@ public void writeToFile(SortedSet<Integer[]> subset){
 	
 }
 public static void main(String [] args){
-	new Channels().createChannel(1);
 	SwingUtilities.invokeLater(new Runnable(){
 
 		@Override
 		public void run() {
-			new MainFrame().setVisible(true);
+			mainFrame = new MainFrame();
+			mainFrame.setVisible(true);
 		}
 		
 	});
+
+	while(mainFrame == null || mainFrame.isVisible() == false){
+		System.out.println("tutaj");
+	}
+
+	channels  = new Channels(mainFrame.getChannelsScrollPane());
+	channels.createChannel(1);
+	//mainFrame.getChannelsScrollPane().addChannelScrollPane(1);
+	//mainFrame.getChannelsScrollPane().getChannelScrollPane(1).addPlot(PlotType.RAW);
+	System.out.println("tutaj");
+	//channels.getChannel(1).populateDFB();
+	
+	//mainFrame.getChannelsScrollPane().revalidate();
+	
 	System.out.println("mogeeeeee");
 
 }

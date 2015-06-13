@@ -5,6 +5,7 @@ import java.util.Deque;
 
 public class Channel {
 private DataFileBuffer dataFileBuffer;
+
 //private SampleSource sampleSource;
 //private VisualisationPanel visualisationPanel;
 
@@ -29,15 +30,16 @@ public DataFileBuffer getDataFileBuffer(){
 }
 
 public synchronized void populateDFB(){
+	System.out.println("tutaj");
 	Thread t1 = new Thread(new Runnable(){
 
 		@Override
 		public void run() {
 			for(int i = 0;i<maxi;i++){
 				if(i<maxi/2){
-					dataFileBuffer.addBufferData(new int[]{i,(int)(Math.random()*100)});
+					dataFileBuffer.addBufferData(new int[]{i,(int)(Math.random()*100-50)});
 				} else 
-					dataFileBuffer.addBufferData(new int[]{i+1000,(int)(Math.random()*100)});
+					dataFileBuffer.addBufferData(new int[]{i+1000,(int)(Math.random()*100-50)});
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {

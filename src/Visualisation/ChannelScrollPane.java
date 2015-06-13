@@ -1,7 +1,11 @@
 package Visualisation;
 import java.awt.Dimension;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 
 import javax.swing.JLabel;
 
@@ -13,7 +17,8 @@ public class ChannelScrollPane extends BoxScrollPane{
 	Map<PlotType,PlotPanel> panels = new HashMap<PlotType,PlotPanel>();
 	Map<PlotType,AxisPanel> axisPanels = new HashMap<PlotType,AxisPanel>();
 	JLabel channelLabel;
-	
+	Deque<Integer[]> samplesDeque = new ArrayDeque<Integer[]>();
+	int samplesDequeSize = 0;
 	public ChannelScrollPane(int channelNumber){
 		channelLabel = new JLabel("CHANNEL "+channelNumber);
 		containerPanel.add(channelLabel);
@@ -23,7 +28,37 @@ public class ChannelScrollPane extends BoxScrollPane{
 	
 	
 	public void addPoint(int[][] samples){
+		Integer [][] sampl = new Integer[2][samplesDequeSize+samples[0].length];
+		//System.out.println("samples len: "+samples[0].length);
+			for(int i = 0;i<samples[0].length;i++){
 			
+				if(samplesDequeSize==980){
+				
+					iter = 0;
+					samplesDeque.clear();
+					samplesDequeSize = 0;
+					//samplesDeque.addLast(new Integer[]{samples[0][i],samples[1][i]});
+					//samplesDeque.addLast(new Integer[]{iter,samples[1][i]});
+				}
+					//samplesDeque.addLast(new Integer[]{samples[0][i],samples[1][i]});
+					samplesDeque.addLast(new Integer[]{iter,samples[1][i]});
+					samplesDequeSize++;
+				
+				iter++;
+				 
+				 
+			}
+			samplesDeque.descendingIterator();
+			int j = 0;
+			for(Integer[] in : samplesDeque){
+				sampl[0][j] = in[0];
+				sampl[1][j++] = in[1];
+			}
+			//sampl = samplesDeque.toArray(new Integer[samplesDequeSize][2]);
+			
+			for(Map.Entry<PlotType, PlotPanel> entry : panels.entrySet()){
+				entry.getValue().paintSamples(sampl);
+			}
 	}
 	
 	public void addPlot(PlotType type) {
