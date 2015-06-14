@@ -21,7 +21,6 @@ public class ChannelsScrollPane extends BoxScrollPane{
 		ChannelScrollPane csp = new ChannelScrollPane(channelNumber);
 		csp.setMaximumSize(new Dimension(100000,300));
 		channelsContainer.put(channelNumber, csp); 
-		csp.addPlot(PlotType.RAW);
 		containerPanel.add(csp);		
 	}
 

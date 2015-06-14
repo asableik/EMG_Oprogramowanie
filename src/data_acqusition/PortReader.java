@@ -27,7 +27,7 @@ public class PortReader {
 		int 							len;
 		ExecutorService 				pool;					// newSingleThreadExecutor - w¹tki wykonywane sekwencyjnie
 																// zapewnia kolejnoœæ rosn¹c¹ wstawieñ
-		 
+		int timestamp = 0;
 	  public void addChannelQueue(int channelNumber, DataFileBuffer portBuffer){
 		  portQueuesList.put(channelNumber,portBuffer);
 	  }
@@ -65,9 +65,10 @@ public class PortReader {
 								@Override
 									
 							    	  public void run(){
+									 	ByteBuffer buf = ByteBuffer.wrap(newData);
+									 		
 							       	      for(int i = 0;i<=len/6;i++){
-										      ByteBuffer buf = ByteBuffer.wrap(newData);
-										      int timestamp = buf.getInt();
+							       	    	  int timestamp = buf.getInt();
 										      
 										      byte firstByte = buf.get();
 										      byte secByte = buf.get();

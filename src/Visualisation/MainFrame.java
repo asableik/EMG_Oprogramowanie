@@ -22,13 +22,13 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 		this.myFrame = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500,200);
+		setSize(1300,300);
 		setTitle("frame");
 		setFocusable(true);
 		channelsScrollPane = new ChannelsScrollPane();
-		channelsScrollPane.addChannelScrollPane(1);
-//		channelsScrollPane.addChannelScrollPane(2);
-		channelsScrollPane.getChannelScrollPane(1).addPlot(PlotType.RAW);
+		//channelsScrollPane.addChannelScrollPane(1);
+		//channelsScrollPane.addChannelScrollPane(2);
+//		channelsScrollPane.getChannelScrollPane(1).addPlot(PlotType.RAW);
 //		channelsScrollPane.getChannelScrollPane(1).addPlot(PlotType.RAW);
 //		channelsScrollPane.getChannelScrollPane(2).addPlot(PlotType.RAW);
 		this.add(channelsScrollPane);

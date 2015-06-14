@@ -44,12 +44,15 @@ public static void main(String [] args){
 
 	channels  = new Channels(mainFrame.getChannelsScrollPane());
 	channels.createChannel(1);
-	//mainFrame.getChannelsScrollPane().addChannelScrollPane(1);
-	//mainFrame.getChannelsScrollPane().getChannelScrollPane(1).addPlot(PlotType.RAW);
+	channels.createChannel(2);
+	mainFrame.getChannelsScrollPane().addChannelScrollPane(1);
+	mainFrame.getChannelsScrollPane().getChannelScrollPane(1).addPlot(PlotType.RAW);
+	mainFrame.getChannelsScrollPane().addChannelScrollPane(2);
+	mainFrame.getChannelsScrollPane().getChannelScrollPane(2).addPlot(PlotType.RAW);
 	System.out.println("tutaj");
 	//channels.getChannel(1).populateDFB();
 	
-	//mainFrame.getChannelsScrollPane().revalidate();
+	mainFrame.getChannelsScrollPane().revalidate();
 	
 	System.out.println("mogeeeeee");
 
